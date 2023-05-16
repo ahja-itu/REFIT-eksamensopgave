@@ -1,0 +1,47 @@
+\documentclass[11pt, a4paper]{report}
+% TODO: skal skrives mere generel, kom til at tilpasse før kopiering :D
+
+
+
+\input{preamble.tex}
+
+\begin{document}
+% =======================
+% Intro section
+% =======================
+\include{title.tex}
+
+\setfancypage{\defaultheader}
+\tableofcontents
+\newpage
+
+% =======================
+% Main section
+% =======================
+\include*{content/abstract}
+\include*{content/introduction}
+\include*{content/recommendation_algorithms}
+\include*{content/free_will}
+\include*{content/discussion}
+\include*{content/conclusion}
+
+% =======================
+% Bibliography section
+% =======================
+\newpage
+\setfancypage{\defaultheader}
+\nocite{*}
+\printbibliography[heading=bibintoc,title={Bibliography}]
+\label{page:lastpage}
+    
+% =======================
+% Appendix section
+% =======================
+\begin{appendices}
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{-1}}
+    
+    \newpage
+    \setfancypage{\defaultheader}
+    \input{appendix/appendix}
+\end{appendices}
+\end{document}

@@ -1,0 +1,155 @@
+% =======================
+% Imports
+% =======================
+\usepackage[a4paper, nomarginpar, textwidth=16cm, headheight=5mm]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+
+\setlength{\marginparwidth}{2cm}
+\usepackage[page,toc,titletoc,title]{appendix}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{listingsutf8}
+\usepackage[english]{babel}
+\usepackage{tikz}
+\usepackage{changepage}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{svg}
+\usepackage[export]{adjustbox}
+\usepackage{lipsum}
+\usepackage{newclude}
+
+% Commands for easy creation of new chapters that can be located on the same page, not clearing pages between them
+\newcommand{\newchapter}[2]{
+\vspace{#1}
+ \begingroup
+    \let\clearpage\relax
+    \chapter{#2}
+\endgroup
+}
+
+\usetikzlibrary{arrows,automata}
+
+\input{preamble/colors.tex}
+\input{preamble/listing_styles.tex}
+
+% =======================
+% Bibliography
+% =======================
+\usepackage[
+    autocite=superscript,
+    sortcites   = true,
+    style       = numeric,
+    defernumbers= true
+]{biblatex}
+\addbibresource{ref.bib}
+
+% BElow command decides what the header right content is
+\newcommand{\defaultheader}[1]{}
+
+
+% Custom commands
+\newcommand{\kilde}[1]{\textcolor{red}{Find source: #1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\rewrite}[1]{\colorbox{red}{\textcolor{white}{\textbf{#1}}}}
+\newcommand{\todo}[1]{\colorbox{magenta}{\textcolor{white}{\textbf{#1}}}}
+\newcommand{\TODO}[1]{\todo{TODO}}
+
+\renewcommand{\cite}[1]{\supercite{#1}}
+
+\usepackage{xurl}
+
+% =======================
+% Formatting
+% =======================
+\titleformat{\chapter}{\normalfont\huge}{\thechapter.}{20pt}{\huge}
+\titlespacing*{\chapter}{0pt}{-15pt}{30pt}
+
+\setlength{\parindent}{0pt}
+\newcommand{\defaulheader}[0]{DefaultHeader (preamble.tex)}
+\newcommand{\setfancypage}[1]{
+    \fancypagestyle{plain}{% copies "fancy" over "plain"
+        \fancyhf{}
+        \fancyhead[L]{\today}
+        \fancyhead[R]{#1}
+        \fancyfoot[C]{\thepage}
+    }
+    \pagestyle{plain}
+}
+
+\renewcommand{\figurename}{Figur} %Så captions starter med Figur og ikke Figure
+
+
+% =======================
+% Title
+% =======================
+\newcommand{\bigguslinus}{\rule{1.25\linewidth}{0.5mm}}
+
+% =======================
+% Utils
+% =======================
+\newcommand{\tmp}[2]{{\color{red}#1}}
+
+\newcommand{\genericfigure}[6]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=#1,angle=#2]{#3/images/#3-#4.pdf}
+        \caption{#5. #6}
+        \label{fig:#3:#4}
+    \end{figure}
+}
+
+\newcommand{\customerprofile}[3]{
+    \genericfigure{\textwidth}{0}{#1}{customer_profile}{Customer Profile\cite{osterwalder_value_2014} for økosystemet omkring cykelferie og Value Proposition tilbudt af #2}{#3}
+}
+
+\newcommand{\bmc}[3]{
+    \genericfigure{\textwidth}{0}{#1}{bmc}{Business Model Canvas\cite{noauthor_business_nodate} for #2}{#3}
+}
+
+\newcommand{\bmcnew}[3]{
+    \genericfigure{\textwidth}{0}{#1}{bmc_new}{Nyt Business Model Canvas\cite{noauthor_business_nodate} for #2}{#3}
+}
+
+\newcommand{\bmpa}[3]{
+    \genericfigure{\textwidth}{0}{#1}{bmpa}{Business Model Performance Assesment\cite{osterwalder_invincible_2020} udført for #2}{#3}
+}
+
+\newcommand{\assessmentq}[3]{
+    \genericfigure{0.8\textwidth}{0}{#1}{assessment_questions}{Assesment Questions for Leaders\cite{osterwalder_invincible_2020} besvaret for #2}{#3}
+}
+
+\newcommand{\assumptionmap}[3]{
+    \genericfigure{\textwidth}{0}{#1}{assumption_mapping}{Assumption Mapping\cite{bland_testing_2019} for #2}{#3}
+}
+
+\newcommand{\assumptionprio}[3]{
+    \genericfigure{\textwidth}{0}{#1}{assumption_priority}{Prioritering af Assumptions\cite{bland_testing_2019} for forslaget til #2}{#3}
+}
+
+\newcommand{\testcard}[4]{
+    \genericfigure{0.6\paperheight}{90}{#1}{test_card_#4}{Test og Learning Cards\cite{bland_testing_2019} til #3 test}{#2}
+}
+
+% =======================
+% Random fixes
+% =======================
+\DeclareUnicodeCharacter{200E}{} % One of the title contain this weird zero width character. So let's just ignore it
+
+% =======================
+% That one special import
+% =======================
+\usepackage{subfiles}
