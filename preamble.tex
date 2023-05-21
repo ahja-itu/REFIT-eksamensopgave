@@ -67,7 +67,14 @@
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\rewrite}[1]{\colorbox{red}{\textcolor{white}{\textbf{#1}}}}
 \newcommand{\todo}[1]{\colorbox{magenta}{\textcolor{white}{\textbf{#1}}}}
-\newcommand{\TODO}[1]{\todo{TODO}}
+
+\newcommand{\TODO}[1]{%
+  \todo{\sloppy{TODO\if\relax\detokenize{#1}\relax
+    % nothing
+  \else : #1\fi
+  }}
+}
+
 
 \renewcommand{\cite}[1]{\supercite{#1}}
 
